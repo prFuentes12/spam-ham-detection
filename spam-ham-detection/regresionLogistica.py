@@ -5,12 +5,13 @@ import pandas as pd
 from nltk.tokenize import TreebankWordTokenizer
 from nltk.corpus import stopwords
 from sklearn.feature_extraction.text import TfidfVectorizer
-from sklearn.naive_bayes import MultinomialNB
+from sklearn.linear_model import LogisticRegression
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score, confusion_matrix, classification_report
 import matplotlib.pyplot as plt
-from sklearn.model_selection import learning_curve    
+from sklearn.model_selection import learning_curve 
 from sklearn.model_selection import StratifiedKFold
+
 
 
 
@@ -108,14 +109,14 @@ X_train, X_test, y_train, y_test = train_test_split(
 
 
 # Entrenar el modelo
-model = MultinomialNB()
+model = LogisticRegression(max_iter=1000)
 model.fit(X_train, y_train)
 
 # Predecir en test
 y_pred = model.predict(X_test)
 
 # Calcular métricas
-print(" Evaluación del Modelo Naive Bayes:")
+print(" Evaluación del Modelo Regresion Logística:")
 print(f"🔹 Accuracy:  {accuracy_score(y_test, y_pred):.4f}")
 print(f"🔹 Precision: {precision_score(y_test, y_pred):.4f}")
 print(f"🔹 Recall:    {recall_score(y_test, y_pred):.4f}")
